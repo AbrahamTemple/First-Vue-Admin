@@ -16,7 +16,7 @@
 
 > http://8.135.100.252/
 
-## vue打包配置
+## Vue打包配置
 
 ``` javascript
 module.exports = {
@@ -50,7 +50,7 @@ module.exports = {
 };
 ```
 
-## nginx配置 
+## Nginx配置 
 
 ``` shell
 server {
@@ -71,6 +71,8 @@ server {
             root   /www/server/tomcat/webapps/dist;
         }
  
+        # 解决proxyTable处于生产环境的问题
+        
         location ^~/api/ {        
             rewrite ^/api/(.*)$ /$1 break;        
             proxy_set_header   Host             $host;        
