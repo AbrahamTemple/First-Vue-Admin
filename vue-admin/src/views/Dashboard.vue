@@ -29,10 +29,10 @@
                     <el-col :span="8">
                         <el-card shadow="hover" :body-style="{ padding: '0px' }">
                             <div class="grid-content grid-con-1">
-                                <i class="el-icon-user-solid grid-con-icon"></i>
+                                <i class="el-icon-s-custom grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">1234</div>
-                                    <div>用户访问量</div>
+                                    <div class="grid-num">201</div>
+                                    <div>今日访问量</div>
                                 </div>
                             </div>
                         </el-card>
@@ -40,10 +40,10 @@
                     <el-col :span="8">
                         <el-card shadow="hover" :body-style="{ padding: '0px' }">
                             <div class="grid-content grid-con-2">
-                                <i class="el-icon-message-solid grid-con-icon"></i>
+                                <i class="el-icon-s-comment grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">321</div>
-                                    <div>系统消息</div>
+                                    <div class="grid-num">618</div>
+                                    <div>总消息量</div>
                                 </div>
                             </div>
                         </el-card>
@@ -51,10 +51,10 @@
                     <el-col :span="8">
                         <el-card shadow="hover" :body-style="{ padding: '0px' }">
                             <div class="grid-content grid-con-3">
-                                <i class="el-icon-s-goods grid-con-icon"></i>
+                                <i class="el-icon-s-opportunity grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">5000</div>
-                                    <div>数量</div>
+                                    <div class="grid-num">1874</div>
+                                    <div>业务完成量</div>
                                 </div>
                             </div>
                         </el-card>
@@ -120,21 +120,21 @@ export default {
             options: {
                 type: "bar",
                 title: {
-                    text: "最近一周各品类销售图"
+                    text: "最近一周各业务销售图"
                 },
                 xRorate: 25,
                 labels: ["周一", "周二", "周三", "周四", "周五"],
                 datasets: [
                     {
-                        label: "家电",
+                        label: "陪诊",
                         data: [234, 278, 270, 190, 230]
                     },
                     {
-                        label: "百货",
+                        label: "挂号",
                         data: [164, 178, 190, 135, 160]
                     },
                     {
-                        label: "食品",
+                        label: "咨询",
                         data: [144, 198, 150, 235, 120]
                     }
                 ]
@@ -142,20 +142,20 @@ export default {
             options2: {
                 type: "line",
                 title: {
-                    text: "最近几个月各品类销售趋势图"
+                    text: "最近几个月各业务销售趋势图"
                 },
                 labels: ["6月", "7月", "8月", "9月", "10月"],
                 datasets: [
                     {
-                        label: "家电",
+                        label: "陪诊",
                         data: [234, 278, 270, 190, 230]
                     },
                     {
-                        label: "百货",
+                        label: "挂号",
                         data: [164, 178, 150, 135, 160]
                     },
                     {
-                        label: "食品",
+                        label: "咨询",
                         data: [74, 118, 200, 235, 90]
                     }
                 ]
@@ -163,16 +163,16 @@ export default {
             options3: {
                 type: 'pie',
                 title: {
-                    text: '服装品类销售饼状图'
+                    text: '亚伯拉罕的总贡献图'
                 },
                 legend: {
                     position: 'left'
                 },
                 bgColor: '#fbfbfb',
-                labels: ['T恤', '牛仔裤', '连衣裙', '毛衣', '七分裤', '短裙', '羽绒服'],
+                labels: ['Docker', 'RabbitMQ', 'Java', 'Spring', 'Vue', 'Linux', 'Golang'],
                 datasets: [
                     {
-                        data: [334, 278, 190, 235, 260, 200, 141]
+                        data: [420, 230, 989, 679, 361, 440, 146]
                     }
                 ]
             },

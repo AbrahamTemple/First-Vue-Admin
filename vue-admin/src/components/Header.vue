@@ -141,10 +141,10 @@ export default {
     color: #fff;
 }
 .user-name {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 .user-avator {
-    margin-left: 20px;
+    margin: 20px;
 }
 .user-avator img {
     display: block;
@@ -153,6 +153,7 @@ export default {
     border-radius: 50%;
 }
 .el-dropdown-link {
+    font-size: 16px;
     color: #fff;
     cursor: pointer;
 }
