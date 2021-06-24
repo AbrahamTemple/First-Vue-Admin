@@ -23,27 +23,6 @@ module.exports = {
         pathRewrite: {
           '^/api': '/'
         }
-      },
-      '/nacos': {
-        target: 'http://8.135.100.252:8848',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/nacos': '/'
-        }
-      },
-      '/rabbit': {
-        target: 'http://8.135.100.252:15672',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/rabbit': '/'
-        }
-      },
-      '/sentinel': {
-        target: 'http://8.135.100.252:8849',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/sentinel': '/'
-        }
       }
     }
   },
