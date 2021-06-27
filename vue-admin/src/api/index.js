@@ -17,6 +17,14 @@ export const userData = query => {
     });
 };
 
+export const loginUser = query => {
+    return request({
+        url: './base/ou/get',
+        method: 'get',
+        params: query
+    });
+};
+
 export const userUpdate = query => {
     return request({
         url: './base/ou/up',
