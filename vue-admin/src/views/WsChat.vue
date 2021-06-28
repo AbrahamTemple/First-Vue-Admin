@@ -11,7 +11,18 @@
         <div class="container">
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="选择用户">
+                    <el-form-item label="选择医生">
+                        <el-select v-model="userId" clearable placeholder="请选择" @change="onChange">
+                            <el-option
+                                    v-for="item in selects"
+                                    :key="item.userId"
+                                    :label="item.label"
+                                    :value="item.userId">
+                            </el-option>
+                        </el-select>
+                        <el-button type="success" :loading="loading" @click="onChange" class="m-left">{{selectText}}</el-button>
+                    </el-form-item>
+                    <el-form-item label="发送用户">
                         <el-select v-model="value" clearable placeholder="请选择" @change="onLoading">
                             <el-option
                                     v-for="item in options"
@@ -52,12 +63,13 @@
 </template>
 
 <script>
-    import { userData,loginUser } from "@/api/index";
+    import { userData,loginUser,expertData } from "@/api/index";
     import {reactive} from "vue";
     export default {
         name: "WsChat",
         data() {
             return {
+                host: "124.71.82.74:8083",
                 wsObj: '',
                 wsUri: '',
                 userId: 0,
@@ -80,10 +92,11 @@
                 },
                 connection: "",
                 options: [],
+                selects: [],
                 messages: [],
                 value: '',
                 loading: false,
-                selectText: '确定链接',
+                selectText: '确定连接',
                 loadText: '加载中',
                 submitText: '发送消息'
             };
@@ -93,8 +106,7 @@
         },
         methods: {
             createWebSocket() {
-                let host = "124.71.82.74:8083";
-                this.wsUri = "ws://" + host + "/websocket/" +this.userId;
+                this.wsUri = "ws://" + this.host + "/websocket/" +this.userId;
                 try {
                     this.wsObj = new WebSocket(this.wsUri);
                     this.initWsEvent();
@@ -120,7 +132,6 @@
                         _this.buildMessage(false,true,false,"WebSocket连接成功:"+'\n'+_this.wsUri);
                     };
                     this.wsObj.onmessage = function (event) {
-                        document.getElementById('msg-list').append();
                         if(event.data !== _this.form.desc) {
                             _this.buildMessage(true, false, true, event.data);
                         }
@@ -152,6 +163,17 @@
                         this.options = this.options.concat(option);
                     });
                     console.log(this.options);
+                });
+                expertData(this.query).then(res=>{
+                    let body = reactive(res);
+                    body.data.forEach(d =>{
+                        let select = {
+                            userId: -Number(d.id),
+                            label: d.name
+                        };
+                        this.selects = this.selects.concat(select);
+                    });
+                    console.log(this.selects);
                 });
             },
             buildMessage(left,right,show,msg){
@@ -189,6 +211,32 @@
                    this.selectText = '确定连接';
                    this.$message.success('已修改发送目标为'+this.value+'号用户');
                 },1000);
+            },
+            onChange(){
+                this.loading = true;
+                this.selectText = this.loadText;
+                if(Number(this.userId)===0){
+                    setTimeout(() => {
+                        this.loading = false;
+                        this.selectText = '确定连接';
+                        this.wsObj.close();
+                        this.$message.success('已修关闭当前的连接通道');
+                    },1000);
+                } else {
+                    setTimeout(() => {
+                        this.loading = false;
+                        this.selectText = '确定连接';
+                        try {
+                            this.wsUri = "ws://" + this.host + "/websocket/" +this.userId;
+                            this.wsObj = new WebSocket(this.wsUri);
+                            this.initWsEvent();
+                        } catch (e) {
+                            this.buildMessage(false,true,false,"WebSocket创建失败:"+e);
+                        }
+                        this.$message.success('重新建立连接的连接者为'+(-Number(this.userId))+'号医生');
+                    },1000);
+                }
+
             }
         },
         mounted() {
