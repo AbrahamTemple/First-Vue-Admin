@@ -8,7 +8,7 @@
 
 ![Screenshot](/docs/p3.png)
 
-![Screenshot](/docs/p4.png)
+![Screenshot](/docs/p6.png)
 
 ![Screenshot](/docs/p5.png)
 
