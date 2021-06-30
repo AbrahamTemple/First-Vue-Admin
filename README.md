@@ -81,12 +81,6 @@ server {
             proxy_pass http://124.71.82.74:8079;    
         }
         
-        location /api{
-            rewrite ^.+api/?(.*)$ /$1 break; 
-            include uwsgi_params; 
-            proxy_pass http://124.71.82.74:8079; 
-        }
- 
         error_page   404   /404.html;
 }
 
